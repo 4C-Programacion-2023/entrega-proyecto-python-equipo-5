@@ -2,7 +2,7 @@ import pygame
 from pygame import image, transform, display, Rect
 import random
 
-def juego_de_2_jugadores(screen):
+def juego_de_2_jugadores(screen):                               ##Aca se empieza a configurar el modo de 2 jugadores
     font = pygame.font.Font(None, 36)
 
     x = 100
@@ -31,21 +31,21 @@ def juego_de_2_jugadores(screen):
                 pygame.quit()
                 exit()
 
-        screen.blit(fondo, (0, 0))
+        screen.blit(fondo, (0, 0))                                                                           ##declara las variables x e y de los objetos, autos y el fondo
         screen.blit(auto, (x, y))
         screen.blit(auto2, (m, s))
         screen.blit(objeto1, (w, t))
         screen.blit(objeto3, (w, l))
         screen.blit(objeto2, (w, p))
 
-        vidas_txt1 = font.render(f"Vidas1: {vidas1}", True, (255, 0, 0))
+        vidas_txt1 = font.render(f"Vidas1: {vidas1}", True, (255, 0, 0))                                    ##Aca se posiciona el contador de vidas en pantalla
         screen.blit(vidas_txt1, (100, 5))
 
         vidas_txt2 = font.render(f"Vidas2: {vidas2}", True, (255, 0, 0))
         screen.blit(vidas_txt2, (1200, 5))
 
         w = w - u
-        if w < -10:
+        if w < -10:                                     ##Establece el movimiento constante de los objetos
             w = 1200
             y1 = random.randint(1, 5)
             y2 = random.randint(1, 5)
@@ -55,7 +55,7 @@ def juego_de_2_jugadores(screen):
             p = y3 * 100
             u += 0.5
 
-        teclas = pygame.key.get_pressed()
+        teclas = pygame.key.get_pressed()               ##define las teclas para el movimiento de los jugadores
         if teclas[pygame.K_LEFT]:
             x -= 1
         if teclas[pygame.K_RIGHT]:
@@ -74,14 +74,14 @@ def juego_de_2_jugadores(screen):
         if teclas[pygame.K_s]:
             s += 2
 
-        auto_rect = Rect(x, y, 150, 80)
+        auto_rect = Rect(x, y, 150, 80)                     ##esto establece las hitboxs de los objetos
         auto2_rect = Rect(m, s, 150, 80)
         objeto1_rect = Rect(w, t, 150, 80)
         objeto2_rect = Rect(w, l, 150, 80)
         objeto3_rect = Rect(w, p, 150, 80)
 
         if auto_rect.colliderect(objeto1_rect) or auto_rect.colliderect(objeto2_rect) or auto_rect.colliderect(
-                objeto3_rect):
+                objeto3_rect):                              ##esto detecta las colisiones entre los objetos y los autos para descontar vidas
 
             vidas1 -= 1
 
@@ -100,7 +100,7 @@ def juego_de_2_jugadores(screen):
 
             if vidas1 == 0:
                 font = pygame.font.Font(None, 48)
-                while True:
+                while True:                                         ##esto cambia del fondo a la pantalla final donde te muestra la puntuacion y te da opcion de jugar de vuelta
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             pygame.quit()
@@ -156,7 +156,7 @@ def juego_de_2_jugadores(screen):
         if teclas[pygame.K_x]:
             break
 
-        pygame.display.flip()
+        pygame.display.flip()                       ##Esto lo que hace es borrar todos los objetos de la pantalla y dibujarlos de vuelta en su nueva ubicacion con sus respectivos tamaños
 
         screen.blit(fondo, (0, 0))
         screen.blit(auto, (200, 270))
@@ -165,7 +165,7 @@ def juego_de_2_jugadores(screen):
         screen.blit(objeto3, (100, 200))
         screen.blit(objeto2, (100, 200))
 
-screen = display.set_mode((1380, 720))
+screen = display.set_mode((1380, 720))                     ##en esta parte del codigo lo que se hace es declarar variables de imagenes
 
 menu = image.load("MENU HECHO.png")
 menu = transform.scale(menu, (1380, 720))

@@ -15,7 +15,7 @@ def menu_principal(screen):
 
         screen.blit(menu, (0, 0))
 
-        teclas = pygame.key.get_pressed()
+        teclas = pygame.key.get_pressed()                                   ##llama a las funciones definidas en los otros archivos para hacer el menu del juego
         if teclas[pygame.K_1]:
             juego_de_1_jugador(screen)
         if teclas[pygame.K_2]:
@@ -27,5 +27,5 @@ def menu_principal(screen):
 
 screen = display.set_mode((1380, 720))
 
-menu = image.load("MENU HECHO.png")
+menu = image.load("MENU HECHO.png")                                           ##en esta parte del codigo lo que se hace es declarar variables de imagenes
 menu = transform.scale(menu, (1380, 720))

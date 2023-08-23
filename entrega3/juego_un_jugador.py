@@ -3,7 +3,7 @@ from pygame import image, transform, Rect, display
 from ranquin import actualizar_ranquin
 import random
 
-def juego_de_1_jugador(screen):
+def juego_de_1_jugador(screen):                          ##Aca se empieza a configurar el modo de 2 jugadores
     font = pygame.font.Font(None, 36)
     while True:
         for event in pygame.event.get():
@@ -15,11 +15,11 @@ def juego_de_1_jugador(screen):
 
         pygame.display.flip()
 
-        teclas = pygame.key.get_pressed()
+        teclas = pygame.key.get_pressed()                       ##las opciones a b y c son para elejir el auto los trs tienen el mismo codigo la opcion a esta detallado el funcionamiento del juego
         if teclas[pygame.K_x]:
             break
         if teclas[pygame.K_a]:
-            x = 100
+            x = 100                                           ##Aca se empieza a configurar el juego
             y = 250
             w = 1200
             u = 2
@@ -43,20 +43,20 @@ def juego_de_1_jugador(screen):
                         pygame.quit()
                         exit()
 
-                screen.blit(fondo, (0, 0))
+                screen.blit(fondo, (0, 0))                                                               ##declara las variables x e y de los objetos, autos y el fondo
                 screen.blit(auto, (x, y))
                 screen.blit(objeto1, (w, t))
                 screen.blit(objeto3, (w, l))
                 screen.blit(objeto2, (w, p))
 
-                vidas_txt = font.render(f"Vidas: {vidas}", True, (255, 0, 0))
+                vidas_txt = font.render(f"Vidas: {vidas}", True, (255, 0, 0))                           ##Aca se posiciona el contador de vidas en pantalla
                 screen.blit(vidas_txt, (100, 5))
                 puntos_txt = font.render(f"Puntos: {puntos}", True, (0, 0, 0))
                 screen.blit(puntos_txt, (100, 40))
 
                 w = w - u
 
-                if w < -10:
+                if w < -10:                                                           ##Establece el movimiento constante de los objetos
                     w = 1200
                     y1 = random.randint(1, 5)
                     y2 = random.randint(1, 5)
@@ -68,7 +68,7 @@ def juego_de_1_jugador(screen):
                         u += 0.5
                         y += 0.2
 
-                teclas = pygame.key.get_pressed()
+                teclas = pygame.key.get_pressed()                               ##define las teclas para el movimiento del jugador
                 if teclas[pygame.K_LEFT]:
                     x -= 1
                 if teclas[pygame.K_RIGHT]:
@@ -86,7 +86,7 @@ def juego_de_1_jugador(screen):
                 if teclas[pygame.K_s]:
                     y += 2
 
-                auto_rect = Rect(x, y, 150, 80)
+                auto_rect = Rect(x, y, 150, 80)                                       ##esto establece las hitboxs de los objetos
                 objeto1_rect = Rect(w, t, 150, 80)
                 objeto2_rect = Rect(w, l, 150, 80)
                 objeto3_rect = Rect(w, p, 150, 80)
@@ -98,7 +98,7 @@ def juego_de_1_jugador(screen):
 
                 if auto_rect.colliderect(objeto1_rect) or auto_rect.colliderect(
                         objeto2_rect) or auto_rect.colliderect(
-                    objeto3_rect):
+                    objeto3_rect):                                                      ##esto detecta las colisiones entre los objetos y los autos para descontar vidas
                     vidas -= 1
                     print("Colisión detectada. Vidas restantes:", vidas)
                     x = 100
@@ -116,7 +116,7 @@ def juego_de_1_jugador(screen):
                         print(puntos)
                         actualizar_ranquin(puntos)
                         font = pygame.font.Font(None, 48)
-                        while True:
+                        while True:                                                       ##esto cambia del fondo a la pantalla final donde te muestra la puntuacion y te da opcion de jugar de vuelta
                             for event in pygame.event.get():
                                 if event.type == pygame.QUIT:
                                     pygame.quit()
@@ -145,7 +145,8 @@ def juego_de_1_jugador(screen):
                 if y > 580:
                     puntos -= 10
 
-                pygame.display.flip()
+                pygame.display.flip()                     ##Esto lo que hace es borrar todos los objetos de la pantalla y dibujarlos de vuelta en su nueva ubicacion con sus respectivos tamaños
+
 
                 screen.blit(fondo, (0, 0))
                 screen.blit(auto, (200, 270))
@@ -190,7 +191,7 @@ def juego_de_1_jugador(screen):
 
                 w = w - u
 
-                if w < -10:
+                if w < -10:                                                              ##Establece el movimiento constante de los objetos
                     w = 1200
                     y1 = random.randint(1, 5)
                     y2 = random.randint(1, 5)
@@ -200,7 +201,7 @@ def juego_de_1_jugador(screen):
                     p = y3 * 100
                     u += 0.5
 
-                teclas = pygame.key.get_pressed()
+                teclas = pygame.key.get_pressed()                                         ##define las teclas para el movimiento del jugador
                 if teclas[pygame.K_LEFT]:
                     x -= 1
                 if teclas[pygame.K_RIGHT]:
@@ -218,7 +219,7 @@ def juego_de_1_jugador(screen):
                 if teclas[pygame.K_s]:
                     y += 2
 
-                auto2_rect = Rect(x, y, 150, 80)
+                auto2_rect = Rect(x, y, 150, 80)                                     ##esto establece las hitboxs de los objetos
                 objeto1_rect = Rect(w, t, 150, 80)
                 objeto2_rect = Rect(w, l, 150, 80)
                 objeto3_rect = Rect(w, p, 150, 80)
@@ -228,9 +229,7 @@ def juego_de_1_jugador(screen):
                     x = 100
                     y = 250
 
-                if auto2_rect.colliderect(objeto1_rect) or auto2_rect.colliderect(
-                        objeto2_rect) or auto2_rect.colliderect(
-                    objeto3_rect):
+                if auto2_rect.colliderect(objeto1_rect) or auto2_rect.colliderect(objeto2_rect) or auto2_rect.colliderect(objeto3_rect):                 ##esto detecta las colisiones entre los objetos y los autos para descontar vidas
                     vidas -= 1
                     print("Colisión detectada. Vidas restantes:", vidas)
                     x = 100
@@ -269,7 +268,7 @@ def juego_de_1_jugador(screen):
                     break
                 if teclas[pygame.K_x]:
                     break
-                tiempo_transcurrido += pygame.time.get_ticks()
+                tiempo_transcurrido += pygame.time.get_ticks()                                      ##sistema de puntuacion
                 if tiempo_transcurrido >= 10:
                     puntos += 1
                     tiempo_transcurrido = 0
@@ -278,7 +277,7 @@ def juego_de_1_jugador(screen):
                 if y > 580:
                     puntos -= 10
 
-                pygame.display.flip()
+                pygame.display.flip()                                                            ##Esto lo que hace es borrar todos los objetos de la pantalla y dibujarlos de vuelta en su nueva ubicacion con sus respectivos tamaños
 
                 screen.blit(fondo, (0, 0))
                 screen.blit(auto2, (200, 270))
@@ -441,7 +440,7 @@ def juego_de_1_jugador(screen):
         if teclas[pygame.K_n]:
           break
 
-screen = display.set_mode((1380, 720))
+screen = display.set_mode((1380, 720))                                            ##en esta parte del codigo lo que se hace es declarar variables de imagenes
 
 menu = image.load("MENU HECHO.png")
 menu = transform.scale(menu, (1380, 720))

@@ -13,7 +13,7 @@ def cargar_ranquin():
         ranquin = []
     return ranquin
 
-def actualizar_ranquin(puntos):
+def actualizar_ranquin(puntos):                                         ##esta parte lo que hace es comparar la puntuacion con las mejores 5, luego los ordena de mayor a menor
     ranquin = cargar_ranquin()
     ranquin.append(puntos)
     ranquin.sort(reverse=True)
@@ -26,7 +26,7 @@ def mostrar_ranquin():
     font = pygame.font.Font(None, 36)
     y = 100
 
-    while True:
+    while True:                                                         ##Esta zona del codigo escribe las puntuaciones en la pantalla
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -52,38 +52,5 @@ def mostrar_ranquin():
             break
 screen = display.set_mode((1380, 720))
 
-menu = image.load("MENU HECHO.png")
-menu = transform.scale(menu, (1380, 720))
-
-garage = image.load("garage.png")
-garage = transform.scale(garage, (1380, 720))
-
-puestos = image.load("RAANQUIN.png")
+puestos = image.load("RAANQUIN.png")                                         ##en esta parte del codigo lo que se hace es declarar variables de imagenes
 puestos = transform.scale(puestos, (1380, 720))
-
-fondo = image.load("fondo.jpeg")
-fondo = transform.scale(fondo, (1380, 720))
-
-final1 = image.load("pantalla final 1.png")
-final1 = transform.scale(final1, (1380, 720))
-
-auto = image.load("auto prinsipal.png")
-auto = transform.scale(auto, (150, 100))
-
-auto2 = image.load("auto2.png")
-auto2 = transform.scale(auto2, (160, 100))
-
-auto3 = image.load("auto3.png")
-auto3 = transform.scale(auto3, (160, 100))
-
-objeto1 = image.load("objeto1-removebg-preview.png")
-objeto1 = transform.scale(objeto1, (200, 100))
-
-objeto2 = image.load("obstaculo2.png")
-objeto2 = transform.scale(objeto2, (200, 100))
-
-objeto3 = image.load("objeto3.png")
-objeto3 = transform.scale(objeto3, (200, 100))
-
-
-
