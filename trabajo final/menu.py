@@ -5,7 +5,7 @@ from ranquin import mostrar_ranquin
 from juego_dos_jugadores import juego_de_2_jugadores
 
 def menu_principal(screen):
-    # ... (menu setup code)
+
     pygame.mixer.music.load("miusiq.mp3")
     pygame.mixer.music.play(-1)  # esto hace q se repita siempre la musica
 
